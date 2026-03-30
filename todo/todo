@@ -1,0 +1,7 @@
+mitady binome=true 1jour
+init docker =true  5mn
+init git =true  5mn
+creation de la base de donne=true 30 mn
+modelisation de la base =false 
+test de rewritting:true 10mn
+init front et back:false 
