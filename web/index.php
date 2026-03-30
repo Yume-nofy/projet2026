@@ -1,2 +1,2 @@
-<?php
-echo "Rewrite OK ";
+<?php  
+      header("location: view/login.php");
