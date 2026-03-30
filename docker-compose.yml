@@ -5,11 +5,9 @@ services:
     build: .
     container_name: iran_web
     ports:
-    - "8080:80"
+      - "${WEB_PORT}:80"
     volumes:
       - ./web:/var/www/html
-    environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html
     depends_on:
       - db
 
@@ -18,12 +16,12 @@ services:
     container_name: iran_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: iran_news
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3307:3306"
+      - "${MYSQL_PORT}:3306"
     volumes:
       - db_data:/var/lib/mysql
 
