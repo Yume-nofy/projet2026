@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
     <title>Information-Admin | Connexion</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preload" href="../css/style2.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../css/style2.css"></noscript>
 </head>
 <body>
     
-    <form action="traitementLogin.php" method="POST" id="loginForm">
+    <form action="/web/view/traitementLogin.php" method="POST" id="loginForm">
         <div id="messageContainer"></div>
  
         <label for="username">Nom d'utilisateur</label>
@@ -24,51 +26,6 @@
         </div>
     </form>
 
-    <script>
-    (function() {
-        const form = document.getElementById('loginForm');
-        const submitBtn = form.querySelector('input[type="submit"]');
-        
-        form.addEventListener('submit', function(e) {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            
-            if (!username || !password) {
-                e.preventDefault();
-                showMessage('Veuillez remplir tous les champs', 'error');
-                return;
-            }
-            
-            submitBtn.classList.add('loading');
-            submitBtn.value = 'Connexion en cours...';
-        });
-        
-        function showMessage(message, type) {
-            const container = document.getElementById('messageContainer');
-            const existingMessage = container.querySelector('.error-message, .success-message');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = type === 'error' ? 'error-message' : 'success-message';
-            messageDiv.textContent = message;
-            container.appendChild(messageDiv);
-            
-            setTimeout(() => {
-                messageDiv.style.opacity = '0';
-                setTimeout(() => messageDiv.remove(), 300);
-            }, 5000);
-        }
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get('error');
-        if (error === 'invalid') {
-            showMessage('Nom d\'utilisateur ou mot de passe incorrect', 'error');
-        } else if (error === 'timeout') {
-            showMessage('Session expirée, veuillez vous reconnecter', 'error');
-        }
-    })();
-    </script>
+    <script src="../js/login.min.js" defer></script>
 </body>
 </html>
